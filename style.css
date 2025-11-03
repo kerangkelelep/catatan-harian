@@ -1,125 +1,210 @@
-/* Reset CSS Sederhana */
+/* =================================
+   1. DEFINISI VARIABEL (Modern)
+   ================================= */
+:root {
+  /* Font & Ukuran */
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Palet Warna */
+  --c-bg: #f8f9fa;             /* Background Halaman (Abu-abu sangat muda) */
+  --c-surface: #ffffff;        /* Background Kartu/Container (Putih) */
+  --c-border: #e5e7eb;         /* Warna Border (Abu-abu muda) */
+  
+  --c-text-primary: #1f2937;   /* Teks Utama (Hitam-Abu) */
+  --c-text-secondary: #6b7280; /* Teks Pendukung (Abu-abu) */
+  
+  --c-primary: #3b82f6;         /* Warna Aksen Biru */
+  --c-primary-hover: #2563eb;   /* Aksen Biru (Hover) */
+  
+  --c-danger: #ef4444;          /* Warna Bahaya/Hapus (Merah) */
+  --c-danger-bg-hover: #fef2f2; /* Latar Hapus (Hover) */
+
+  /* Bayangan (Shadow) */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.03), 0 10px 20px rgba(0,0,0,0.07);
+
+  /* Transisi */
+  --transition-ease: all 0.2s ease-in-out;
+}
+
+/* =================================
+   2. RESET & BODY
+   ================================= */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Basis untuk 'rem' */
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+  font-family: var(--font-family);
+  background-color: var(--c-bg);
+  color: var(--c-text-primary);
+  line-height: 1.6;
+  padding: 2rem;
 }
 
+/* =================================
+   3. LAYOUT UTAMA & JUDUL
+   ================================= */
 .container {
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-h1, h2 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--c-surface);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 h1 {
-    font-size: 2em;
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  color: var(--c-text-primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 h2 {
-    font-size: 1.5em;
-    margin-top: 20px;
-    border-bottom: 2px solid #ecf0f1;
-    padding-bottom: 5px;
-}
-
-.input-area {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#input-tanggal {
-    font-size: 1em;
-    padding: 8px;
-    border: 1px solid #bdc3c7;
-    border-radius: 4px;
-}
-
-#input-catatan {
-    font-family: inherit;
-    font-size: 1em;
-    padding: 10px;
-    border: 1px solid #bdc3c7;
-    border-radius: 4px;
-    min-height: 120px;
-    resize: vertical;
-}
-
-#tombol-simpan {
-    background-color: #2980b9;
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#tombol-simpan:hover {
-    background-color: #3498db;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 500;
+  color: var(--c-text-secondary);
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  /* Menghilangkan border-bottom yang kaku */
 }
 
 hr {
-    border: 0;
-    height: 1px;
-    background: #ecf0f1;
-    margin: 25px 0;
+  border: 0;
+  border-top: 1px solid var(--c-border);
+  margin: 2.5rem 0;
+}
+
+/* =================================
+   4. AREA INPUT (FORM)
+   ================================= */
+.input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Jarak antar elemen input */
+}
+
+/* Style umum untuk input & textarea */
+#input-tanggal,
+#input-catatan {
+  font-family: var(--font-family);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  background-color: #fdfdfd; /* Sedikit beda dari background utama */
+  transition: var(--transition-ease);
+}
+
+/* --- Efek Detail: Focus Ring Kustom --- */
+#input-tanggal:focus,
+#input-catatan:focus {
+  outline: none; /* Hilangkan outline bawaan */
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Efek "glow" biru */
+}
+
+#input-catatan {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* --- Efek Detail: Tombol Simpan --- */
+#tombol-simpan {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  
+  background-color: var(--c-primary);
+  color: white;
+  
+  transition: var(--transition-ease);
+}
+
+#tombol-simpan:hover {
+  background-color: var(--c-primary-hover);
+  /* Efek "terangkat" yang keren */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* =================================
+   5. DAFTAR CATATAN
+   ================================= */
+#daftar-catatan {
+  /* Mengatur jarak antar item catatan */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .catatan-item {
-    background-color: #fafafa;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    word-wrap: break-word; /* Agar teks panjang tidak merusak layout */
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  word-wrap: break-word;
+  transition: var(--transition-ease);
+}
+
+/* --- Efek Detail: Item Terangkat --- */
+.catatan-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: #d1d5db; /* Border sedikit lebih gelap */
 }
 
 .catatan-item .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 .catatan-item strong {
-    font-size: 1.1em;
-    color: #34495e;
-}
-
-.catatan-item .tombol-hapus {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    font-size: 0.9em;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.catatan-item .tombol-hapus:hover {
-    text-decoration: underline;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-text-primary);
 }
 
 .catatan-item p {
-    white-space: pre-wrap; /* Menjaga format line break dari textarea */
+  color: var(--c-text-secondary);
+  white-space: pre-wrap; /* Penting: Jaga format paragraf */
+  line-height: 1.7; /* Lebih mudah dibaca */
+}
+
+/* --- Efek Detail: Tombol Hapus Halus --- */
+.catatan-item .tombol-hapus {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  
+  /* Default: halus & tidak mencolok */
+  color: var(--c-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  
+  transition: var(--transition-ease);
+}
+
+.catatan-item .tombol-hapus:hover {
+  /* Hover: Jelas & tegas */
+  color: var(--c-danger);
+  background-color: var(--c-danger-bg-hover);
 }
